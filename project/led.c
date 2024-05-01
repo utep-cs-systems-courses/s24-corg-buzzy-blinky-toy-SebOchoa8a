@@ -1,20 +1,45 @@
 #include <msp430.h>
 #include "libTimer.h"
-#include "buzzer.h"
+#include "led.h"
 #include "notes.h"
 
-void buzzer_init()
-{
 
-  timerAUpmode();/* used to drive speaker */
-  P2SEL2 &= ~(BIT6 | BIT7);
-  P2SEL &= ~BIT7;
-  P2SEL |= BIT6;
-  P2DIR = BIT6;/* enable output to speaker (P2.6) */
+
+void led_init(){
+  P1DIR |= LEDS;
+  P1OUT &= ~LED_GREEN;
+  P1OUT &= ~LED_RED;
 }
 
-void buzzer_set_period(short cycles) /* buzzer clock = 2MHz. (period of 1k results in 2kHz tone) */
-{
-  CCR0 = cycles;
-  CCR1 = cycles >> 1;/* one half cycle */
+void green_on(){
+  P1OUT ^= LED_GREEN;
+  P1OUT &= ~LED_RED;
+  __delay_cycles(5000);
+}
+
+void green_off(){
+  P1OUT &= ~LED_GREEN;
+  __delay_cycles(500000);
+}
+
+void red_on(){
+  P1OUT ^= LED_RED;
+  P1OUT &= ~LED_GREEN;
+}
+
+void red_off(){
+  P1OUT &= ~LED_RED;
+  __delay_cycles(500000);
+}
+
+void flash(){
+  P1OUT |= LED_GREEN;
+  __delay_cycles(1500000);
+  P1OUT &= ~LED_RED;
+  __delay_cycles(500000);
+  P1OUT &= ~LED_GREEN;
+  __delay_cycles(500000);
+  P1OUT |= LED_RED;
+  __delay_cycles(1500000);
+
 }
