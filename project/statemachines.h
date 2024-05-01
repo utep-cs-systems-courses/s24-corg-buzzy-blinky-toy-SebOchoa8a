@@ -1,4 +1,4 @@
-ifndef stateMachine_included
+#ifndef stateMachine_included
 #define stateMachine_included
 
 void next_state();
