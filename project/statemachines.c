@@ -7,20 +7,31 @@
 
 
 void next_state(int state) {
-  leds_off();
-
+  green_off();
+  red_off();
   switch(state) {
 
   case 1:
-
     flash(3);
     green_off();
     red_on();
     green_on();
     mario_jingle();
     red_off();
-    break;
+    green_off();
+  break;
 
+  case 2:
+    flash(3);
+    green_on();
+    green_off();
+    red_off();
+    break;
+  case 3:
+    red_off();
+    green_on();
+    green_off();
+    break;
   default:
     green_on();
     break;

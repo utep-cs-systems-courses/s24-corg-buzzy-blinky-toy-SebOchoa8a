@@ -7,7 +7,6 @@
 
 char switch_state_down;
 
-
 void switch_init()
 {
   P2REN |= SWITCHES;
@@ -16,7 +15,6 @@ void switch_init()
   P2DIR &= ~SWITCHES;
   switch_update_interrupt_sense();
   switch_interrupt_handler();
-  led_update();
 
 }
 

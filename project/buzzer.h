@@ -3,7 +3,6 @@
 
 void buzzer_init();
 void buzzer_set_period(short cycles);
-void play_song();
-void mario_song(int notes[]);
+void mario_jingle();
 
 #endif

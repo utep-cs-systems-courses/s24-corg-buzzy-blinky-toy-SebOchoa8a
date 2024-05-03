@@ -1,5 +1,4 @@
 #ifndef sr_included
-
 #define sr_included
 
 void set_sr(int sr_val);
